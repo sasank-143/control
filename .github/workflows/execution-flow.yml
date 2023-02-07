@@ -72,7 +72,7 @@ jobs:
         with:
           name: dist-files
       - name: Output contents
-        run: ls
+        run: lss
       - name: Deploy
         run: echo "Deploying..."
   report:
