@@ -1,0 +1,25 @@
+name: matrix demo 
+on: push
+jobs:
+  job1:
+    strategy:
+      matrix: 
+        node-version: [ 12,13,15 ]
+        operating_system: [ ubuntu-latest,windows-latest,macos-latest ]
+        exclude: 
+          - node-version: 12
+            operating_system: ubuntu-latest
+        include:
+          - node-version: 14
+            operating_system: ubuntu-latest
+    runs-on: ${{ matrix.operating_system }}
+    steps:
+      - name: print string
+        continue-on-error: true
+        run: eccho "hello"
+      - name: get code
+        uses: actions/checout@v3
+      - name: setup node_modules
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
