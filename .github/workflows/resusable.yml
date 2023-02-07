@@ -1,0 +1,8 @@
+name: reusable
+on: workflow_call
+jobs:
+  usable:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy files 
+        run: echo " deploying and upgarding files"
