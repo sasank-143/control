@@ -7,10 +7,16 @@ on:
         required: false
         default: dist
         type: string
+    outputs: 
+      outcome:
+        description: this displays the output
+        value: ${{ jobs.usable.outputs.update }}
 
 
 jobs:
   usable:
+    outputs:
+      update: ${{ steps.set-result.outputs.step.result }}
     runs-on: ubuntu-latest
     steps:
       - name: get code
@@ -21,3 +27,6 @@ jobs:
         run: ls
       - name: deploy files 
         run: echo " deploying and upgarding files"
+      - name: displaying outputs
+        id: set-result 
+        run: echo "::set-output name=step-result::success"
